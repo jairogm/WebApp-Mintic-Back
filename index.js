@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors')
 
 require('./driver/mongo-connection');
 
@@ -11,6 +12,7 @@ const port = process.env.PORT;
 const backApp = express();
 
 backApp.use(express.json())
+backApp.use(cors())
 
 backApp.use('/api/users',usersRouter)
 backApp.use('/api/sales',salesRouter)
