@@ -1,0 +1,22 @@
+{
+  "name": "readme-store-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "Crihstian Molina <crihstianmol@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "dotenv": "^10.0.0",
+    "nodemon": "^2.0.13",
+    "prettier": "^2.4.1"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^6.0.10"
+  }
+}
