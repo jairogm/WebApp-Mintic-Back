@@ -6,16 +6,25 @@ const productSchema = new Schema({
         type: String,
         required: true,
     },
-    price: {
-        type: Number,
+    title: {
+        type: String,
         required: true,
     },
     author: {
         type: String,
         required: true,
     },
-    title: {
+    year: {
         type: String,
+        required: true,
+        match: new RegExp('^[0-9]{4}$') 
+    },
+    editorial: {
+        type: String,
+        required: true
+    },
+    price: {
+        type: Number,
         required: true,
     },
     stock: {

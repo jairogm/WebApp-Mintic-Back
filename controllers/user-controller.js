@@ -20,10 +20,14 @@ const readUsers = (request, response) => {
   const id = request.query.id;
   const username = request.query.username;
   const name = request.query.name;
+  const DNI = request.query.DNI;
 
   const filter = {};
   if (id) {
     filter._id = id;
+  }
+  if (DNI) {
+    filter.DNI = DNI;
   }
   if (username) {
     filter.userName = username;
@@ -31,7 +35,6 @@ const readUsers = (request, response) => {
   if (name) {
     filter.name = name;
   }
-
   User.find(filter, (error, result) => {
     if (error) {
       return response.status(500).send({ error })
