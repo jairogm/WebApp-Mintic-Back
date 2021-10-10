@@ -17,11 +17,19 @@ const createUser = (request, response) => {
 
 // GET
 const readUsers = (request, response) => {
-  const id = request.params.id;
+  const id = request.query.id;
+  const username = request.query.username;
+  const name = request.query.name;
 
   const filter = {};
   if (id) {
     filter._id = id;
+  }
+  if (username) {
+    filter.userName = username;
+  }
+  if (name) {
+    filter.name = name;
   }
 
   User.find(filter, (error, result) => {
