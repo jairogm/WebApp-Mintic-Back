@@ -8,7 +8,7 @@ router.post('/', createSale);
 
 router.get('/', readSales);
 
-router.get('/:id', readSales);
+router.get('/', readSales);
 
 router.patch('/:id', updateSale);
 

@@ -22,6 +22,14 @@ const saleSchema = new Schema({
         type: String,
         required: true,
     },
+    clientid: {
+        type: String,
+        required: true,
+    },
+    clientname: {
+        type: String,
+        required: true,
+    },
     detail: {
         type: Array,
         required: true,

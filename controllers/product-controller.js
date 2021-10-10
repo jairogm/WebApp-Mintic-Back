@@ -17,11 +17,23 @@ const createProduct = (request, response) => {
 
 // GET
 const readProducts = (request, response) => {
-  const id = request.params.id;
+  const id = request.query.id;
+  const title = request.query.title;
+  const sku = request.query.sku;
+  const author = request.query.author;
 
   const filter = {};
   if (id) {
     filter._id = id;
+  }
+  if (title) {
+    filter.title = title;
+  }
+  if (sku) {
+    filter.sku = sku;
+  }
+  if (author) {
+    filter.author = author;
   }
 
   Product.find(filter, (error, result) => {

@@ -8,7 +8,7 @@ router.post('/', createUser);
 
 router.get('/', readUsers);
 
-router.get('/:id', readUsers);
+router.get('/', readUsers);
 
 router.patch('/:id', updateUser);
 

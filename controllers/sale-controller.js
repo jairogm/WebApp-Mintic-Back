@@ -17,11 +17,23 @@ const createSale = (request, response) => {
 
 // GET
 const readSales = (request, response) => {
-  const id = request.params.id;
+  const id = request.query.id;
+  const clientid = request.query.clientid;
+  const clientname = request.query.clientname;
+  const date = request.query.date;
 
   const filter = {};
   if (id) {
     filter._id = id;
+  }
+  if (title) {
+    filter.clientid = clientid;
+  }
+  if (clientname) {
+    filter.clientname = clientname;
+  }
+  if (date) {
+    filter.date = date;
   }
 
   Sale.find(filter, (error, result) => {
