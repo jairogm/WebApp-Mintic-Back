@@ -26,7 +26,7 @@ const readSales = (request, response) => {
   if (id) {
     filter._id = id;
   }
-  if (title) {
+  if (clientid) {
     filter.clientid = clientid;
   }
   if (clientname) {
