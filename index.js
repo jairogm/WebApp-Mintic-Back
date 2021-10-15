@@ -12,16 +12,16 @@ const port = process.env.PORT;
 const backApp = express();
 
 backApp.use(express.json())
-backApp.options('*', cors())
+backApp.use(cors())
 
-backApp.use('/api/users', usersRouter)
-backApp.use('/api/sales', salesRouter)
-backApp.use('/api/products', productsRouter)
+backApp.use('/api/users',usersRouter)
+backApp.use('/api/sales',salesRouter)
+backApp.use('/api/products',productsRouter)
 
 backApp.get('/', (req, res) => {
     res.send('Welcome to Readme-Store API')
 })
 
-backApp.listen(port, () => {
+backApp.listen(port,()=>{
     console.log(`Running in port ${port}`)
 })
