@@ -58,6 +58,7 @@ const createUser = async (request, response) => {
 
 // GET
 const readUsers = (request, response) => {
+
   const id = request.query.id;
   const username = request.query.username;
   const name = request.query.name;
@@ -161,6 +162,7 @@ const updateUser = (request, response) => {
   }
 
   const user = request.body
+  console.log(user)
 
   let encryptedPassword;
   if (!user.withGoogle && user.password) {
@@ -179,7 +181,7 @@ const updateUser = (request, response) => {
       });
     });
   } else {
-    User.updateOne({ _id: id }, { user }, (error, result) => {
+    User.updateOne({ _id: id }, user, (error, result) => {
       if (error) {
         return response.status(500).send({ error });
       }
