@@ -11,8 +11,8 @@ const productsRouter = require('./routes/products')
 const port = process.env.PORT;
 const backApp = express();
 
-backApp.use(express.json())
 backApp.use(cors())
+backApp.use(express.json())
 
 backApp.use('/api/users',usersRouter)
 backApp.use('/api/sales',salesRouter)
