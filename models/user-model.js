@@ -8,6 +8,10 @@ function requiresPassword() {
 
 
 const userSchema = new Schema({
+    username: {
+        type: String,
+        unique: true
+    },
     name: {
         type: String,
         required: true,
@@ -43,6 +47,6 @@ const userSchema = new Schema({
 
 userSchema.methods.toJSON = function () {
     return { ...this.toObject(), password: undefined };
-  }
+}
 
 module.exports = mongoose.model('users', userSchema);
