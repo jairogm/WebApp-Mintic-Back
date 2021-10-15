@@ -12,7 +12,10 @@ const port = process.env.PORT;
 const backApp = express();
 
 backApp.use(express.json())
-backApp.use(cors())
+backApp.use(cors({
+    origin: "http://localhost:3000", 
+    credentials: true,
+}))
 
 backApp.use('/api/users',usersRouter)
 backApp.use('/api/sales',salesRouter)
