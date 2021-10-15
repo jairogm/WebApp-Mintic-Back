@@ -98,7 +98,7 @@ const authUser = async (request, response) => {
     }
 
     // 3. generar un token
-    const token = jwt.sign({ id: userFromDb._id }, process.env.JWT_SECRET, {
+    const token = jwt.sign({ id: userFromDb._id, rol: userFromDb.rol }, process.env.JWT_SECRET, {
       expiresIn: '6h',
     });
     return response.send({ ok: isValid, token });
@@ -138,20 +138,16 @@ const authUser = async (request, response) => {
       });
     }
 
-
-    let idUser, rolUser;
     const newUser = new User({ ...user, password: encryptedPassword })
     newUser.save((error, result) => {
       if (error) {
         return response.status(500).send({ error })
       }
-      idUser = result._id
-      rolUser = result.rol
+      const token = jwt.sign({ id: result._id, rol: result.rol }, process.env.JWT_SECRET, {
+        expiresIn: '6h',
+      });
+      return response.send({ ok: true, token });
     })
-    const token = jwt.sign({ id: idUser, rol: rolUser }, process.env.JWT_SECRET, {
-      expiresIn: '6h',
-    });
-    return response.send({ ok: isValid, token });
   }
 };
 
