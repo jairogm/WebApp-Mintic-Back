@@ -1,18 +1,21 @@
 const express = require('express');
 const { createProduct, readProducts, updateProduct, deleteProduct } = require('./../controllers/product-controller');
 
+const {validateRole} = require('./../middleware/validate-role')
+const {validateUser} = require('./../middleware/validate-user')
+
 // Router
 const router = express.Router();
 
-router.post('/', createProduct);
+router.post('/', [validateUser, validateRole], createProduct);
 
 router.get('/', readProducts);
 
 router.get('/', readProducts);
 
-router.patch('/:id', updateProduct)
+router.patch('/:id', [validateUser, validateRole], updateProduct)
 
-router.delete('/:id', deleteProduct)
+router.delete('/:id', [validateUser, validateRole], deleteProduct)
 
 // GET, POST, PATCH, DELETE // Products
 

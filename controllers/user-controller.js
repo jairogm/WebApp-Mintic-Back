@@ -109,27 +109,27 @@ const authUser = async (request, response) => {
         error: 'Falta nombre',
       });
     }
-  
+
     if (!user.email) {
       return response.status(400).send({
         ok: false,
         error: 'Falta correo',
       });
     }
-  
+
     if (!user.withGoogle && !user.password) {
       return response.status(400).send({
         ok: false,
         error: 'Falta contraseña',
       });
     }
-  
+
     let encryptedPassword;
     if (!user.withGoogle) {
       const salt = bcrypt.genSaltSync();
       encryptedPassword = bcrypt.hashSync(user.password, salt);
     }
-  
+
     const existingUser = await User.findOne({ email: user.email });
     if (existingUser && existingUser._id) {
       return response.status(302).send({
@@ -137,17 +137,18 @@ const authUser = async (request, response) => {
         error: 'El usuario ya está registrado',
       });
     }
-  
-  
-    let idUser;
+
+
+    let idUser, rolUser;
     const newUser = new User({ ...user, password: encryptedPassword })
     newUser.save((error, result) => {
       if (error) {
         return response.status(500).send({ error })
       }
-      idUser = result._id 
+      idUser = result._id
+      rolUser = result.rol
     })
-    const token = jwt.sign({ id: idUser }, process.env.JWT_SECRET, {
+    const token = jwt.sign({ id: idUser, rol: rolUser }, process.env.JWT_SECRET, {
       expiresIn: '6h',
     });
     return response.send({ ok: isValid, token });
