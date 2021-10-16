@@ -7,15 +7,15 @@ const {validateUser} = require('./../middleware/validate-user')
 // Router
 const router = express.Router();
 
-router.post('/', [validateUser, validateRole], createProduct);
+router.post('/', createProduct);
 
 router.get('/', readProducts);
 
 router.get('/', readProducts);
 
-router.patch('/:id', [validateUser, validateRole], updateProduct)
+router.patch('/:id', updateProduct)
 
-router.delete('/:id', [validateUser, validateRole], deleteProduct)
+router.delete('/:id', deleteProduct)
 
 // GET, POST, PATCH, DELETE // Products
 
