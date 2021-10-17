@@ -85,6 +85,64 @@ const readUsers = (request, response) => {
   })
 };
 
+const readSellers = (request, response) => {
+
+  const id = request.query.id;
+  const username = request.query.username;
+  const name = request.query.name;
+  const DNI = request.query.DNI;
+
+  const filter = {};
+  filter.rol = 'Seller'
+  if (id) {
+    filter._id = id;
+  }
+  if (DNI) {
+    filter.DNI = DNI;
+  }
+  if (username) {
+    filter.userName = username;
+  }
+  if (name) {
+    filter.name = name;
+  }
+  User.find(filter, (error, result) => {
+    if (error) {
+      return response.status(500).send({ error })
+    }
+    return response.send(result)
+  })
+};
+
+const readAdmins = (request, response) => {
+
+  const id = request.query.id;
+  const username = request.query.username;
+  const name = request.query.name;
+  const DNI = request.query.DNI;
+
+  const filter = {};
+  filter.rol = 'Admin'
+  if (id) {
+    filter._id = id;
+  }
+  if (DNI) {
+    filter.DNI = DNI;
+  }
+  if (username) {
+    filter.userName = username;
+  }
+  if (name) {
+    filter.name = name;
+  }
+  User.find(filter, (error, result) => {
+    if (error) {
+      return response.status(500).send({ error })
+    }
+    return response.send(result)
+  })
+};
+
 const authUser = async (request, response) => {
   const user = request.body;
   const userFromDb = await User.findOne({ email: user.email });
@@ -214,6 +272,8 @@ const deleteUser = (request, response) => {
 module.exports = {
   createUser,
   readUsers,
+  readAdmins,
+  readSellers,
   updateUser,
   deleteUser,
   authUser,
