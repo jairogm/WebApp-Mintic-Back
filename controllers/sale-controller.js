@@ -5,8 +5,8 @@ const Sales = [];
 
 // POST
 const createSale = (request, response) => {
-  const Sale = new Sale(request.body)
-  Sale.save((error, result)=>{
+  const newSale = new Sale(request.body)
+  newSale.save((error, result)=>{
     if(error) {
       return response.status(500).send({error})
     }
