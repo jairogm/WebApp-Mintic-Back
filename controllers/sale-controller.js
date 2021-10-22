@@ -21,6 +21,7 @@ const readSales = (request, response) => {
   const clientid = request.query.clientid;
   const clientname = request.query.clientname;
   const date = request.query.date;
+  const sellerid = request.query.sellerid;
 
   const filter = {};
   if (id) {
@@ -34,6 +35,9 @@ const readSales = (request, response) => {
   }
   if (date) {
     filter.date = date;
+  }
+  if(sellerid){
+    filter.sellerid = sellerid;
   }
 
   Sale.find(filter, (error, result) => {
